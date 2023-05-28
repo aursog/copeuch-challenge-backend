@@ -4,7 +4,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
 }
 
-group = "com.logicea"
+group = "cl.copeuch"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
@@ -26,7 +26,7 @@ dependencies {
 	//DB
 	implementation("org.flywaydb:flyway-core")
 	implementation("org.flywaydb:flyway-mysql")
-    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:3.1.2")
+    implementation("org.postgresql:postgresql:42.6.0")
 
 	// security
 	implementation("org.springframework.boot:spring-boot-starter-security")
@@ -35,6 +35,10 @@ dependencies {
 	// annotations
     compileOnly("org.projectlombok:lombok:1.18.26")
 	annotationProcessor("org.projectlombok:lombok:1.18.26")
+
+	// documentation swagger
+	implementation("io.springfox:springfox-swagger2:2.9.2")
+	implementation("io.springfox:springfox-swagger-ui:2.9.2")
 
 	// test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

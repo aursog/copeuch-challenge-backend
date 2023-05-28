@@ -1,14 +1,17 @@
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   profiles:
     active: ${ENVIRONMENT:dev}
   output:
     ansi:
       enabled: ALWAYS
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://${FAMILY_MYSQL_HOST:localhost}:3306/${DATABASE:logicea}
-    username: ${MS_USERNAME:logicea}
-    password: ${MS_PASSWORD:logicea123}
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${FAMILY_POSTGRES_HOST:localhost}:${POSTGRESDB_LOCAL_PORT:5432}/${DATABASE:copeuch}
+    username: ${MS_USERNAME:postgres}
+    password: ${MS_PASSWORD:asdf123}
   jpa:
     generate-ddl: false
     hibernate:
@@ -21,7 +24,7 @@ spring:
   flyway:
     enabled: true
     baseline-version: 1
-    schemas: ${DATABASE:logicea}
+    schemas: "public"
     locations: "classpath:db/migration"
     sql-migration-prefix: "V"
     sql-migration-suffixes: ".sql"
@@ -36,5 +39,5 @@ server:
     include-stacktrace: never
 
 jwt:
-  secret: "logicea-challenge"
+  secret: "copeuch-challenge"
   expiration: 86400000
